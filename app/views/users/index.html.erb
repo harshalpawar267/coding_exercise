@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-lg-12"> <h1 class="page-header">Users</h1></div>
+</div>
+
+<div class="panel">
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th >Sr. No.</th>
+          <th >Name</th>
+          <th >Image Name</th>
+          <th >Language</th>
+          <th >Created On</th>
+          <th >Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each_with_index do |info, i| %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= info.first_name.nil? ? '' :  info.first_name%></td>
+            <td ><%= info.email %></td>
+            <td ><%= info.phone %></td>
+            <td ><%= info.created_at %></td>
+            <td > <%= link_to 'Edit Profile', edit_user_registration_path %>            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="pull-right">
+  <%= link_to 'Back', root_path, class: 'btn btn-primary pull-left' %>
+</div>

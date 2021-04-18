@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-9"> <h1 class="page-header">Users Task</h1></div>
+  <div class="col-lg-3" style="color: white;margin-top: 38px;"><%= link_to 'Add New Task', new_tasks_path, class: 'btn btn-primary' %></div>
+</div>
+
+<div class="panel">
+  <div class="panel-body">
+    <% if @task.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th width='20%'>Sr. No.</th>
+          <th width='16%'>Task Title</th>
+          <th width='20%'>Task Descriptions</th>
+          <th width='10%'>status</th>
+          <th width='27%'>Deadline</th>
+          <th width='20%'>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <% @task.each_with_index do |info, i| %>
+            <tr>
+              <td width='10%'><%= i+1 %></td>
+              <td width='16%'><%= info.task_name %></td>
+              <td width='20%'><%= info.task_descriptions %></td>
+              <td width='10%'><%= info.status.nil? ? 'New' :  info.status %>
+              </td>
+              <% deadline_check = compair_date(info.deadline) %>
+              <% if deadline_check %>
+              <td width='27%' style="color:red;"><%= display_date(info.deadline) %></td>
+              <% else %>
+              <td width='27%'><%= display_date(info.deadline) %></td>
+              <% end %>
+              <td width='20%'>
+                <%= link_to 'Edit', edit_tasks_path(info) %>
+                <%= link_to 'Delete', delete_tasks_path(info.id), data: { confirm: 'Are you sure?' } %>
+            </tr>
+            <% end %>
+      </tbody>
+    </table>
+    <% else %>
+        <h3>
+          You have not assign any task, Please create or ask admin.
+        </h3>
+    <% end %>
+  </div>
+</div>
+<div class="pull-right">
+  <%= link_to 'Back', root_path, class: 'btn btn-primary pull-left' %>
+</div>

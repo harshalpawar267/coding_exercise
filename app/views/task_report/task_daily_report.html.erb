@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+          border-collapse: collapse;
+      }
+      table, td, th {
+        border: 1px solid black;
+      }
+    </style>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hi,</h3>
+    <p>
+    You your task have dealine.
+    </p>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>Task Name</th>
+          <th>Task Descriptions</th>
+        </tr>
+      </thead>  
+      <thead>
+        <% @task_details.each_with_index do |data, i| %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= data.task_name %></td>
+          <td><%= data.task_descriptions %></td>
+          <td><%= data.deadline %></td>
+        </tr>
+        <%end%>
+      </thead>  
+    </table>
+    
+    <p>
+      
+    Kindly checked.
+    </p>
+    <p>
+    Regards,</br>
+    Team Mahadhan
+    </p>
+  </body>
+</html>
